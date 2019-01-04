@@ -4,10 +4,10 @@
 #AutoIt3Wrapper_Outfile=SelectBot.Exe
 #AutoIt3Wrapper_Compression=4
 #AutoIt3Wrapper_UseUpx=y
-#AutoIt3Wrapper_Res_Comment=For MyBot.run. Made by Fliegerfaust
-#AutoIt3Wrapper_Res_Description=SelectBot for MyBot
-#AutoIt3Wrapper_Res_Fileversion=3.8.6.0
-#AutoIt3Wrapper_Res_LegalCopyright=Fliegerfaust
+#AutoIt3Wrapper_Res_Comment=For MyBot.run. Made by Fliegerfaust, Edited for Multibot by tehbank
+#AutoIt3Wrapper_Res_Description=SelectBot for MultiBot
+#AutoIt3Wrapper_Res_Fileversion=1.0.0.0
+#AutoIt3Wrapper_Res_LegalCopyright=Fliegerfaust, edited by tehbank
 #AutoIt3Wrapper_Run_Tidy=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
@@ -44,9 +44,9 @@
 #include <ProgressConstants.au3>
 #include <SendMessage.au3>
 
-Global $g_sBotFile = "mybot.run.exe"
-Global $g_sBotFileAU3 = "mybot.run.au3"
-Global $g_sVersion = "3.8.6"
+Global $g_sBotFile = "multibot.run.exe"
+Global $g_sBotFileAU3 = "multibot.run.au3"
+Global $g_sVersion = "1.0.0"
 Global $g_sDirProfiles = @MyDocumentsDir & "\Profiles.ini"
 Global $g_hGui_Main, $g_hGui_Profile, $g_hGui_Emulator, $g_hGui_Instance, $g_hGui_Dir, $g_hGui_Parameter, $g_hGUI_AutoStart, $g_hGUI_Edit, $g_hListview_Main, $g_hLst_AutoStart, $g_hLog, $g_hProgress, $g_hBtn_Shortcut, $g_hBtn_AutoStart, $g_hContext_Main
 Global $g_hListview_Instances, $g_hLblUpdateAvailable
