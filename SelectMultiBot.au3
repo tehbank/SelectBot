@@ -103,7 +103,7 @@ Func GUI_Main()
 
 	$g_hLog = _GUICtrlStatusBar_Create($g_hGui_Main)
 	_GUICtrlStatusBar_SetParts($g_hLog, 2, 185)
-	_GUICtrlStatusBar_SetText($g_hLog, "Edited for MultiBotRun - Original by Fliegerfaust")
+	_GUICtrlStatusBar_SetText($g_hLog, "SelectMultiBot")
 	$g_hProgress = GUICtrlCreateProgress(0, 0, -1, -1, $PBS_SMOOTH)
 	$hProgress = GUICtrlGetHandle($g_hProgress)
 	_GUICtrlStatusBar_EmbedControl($g_hLog, 1, $hProgress)
@@ -174,7 +174,7 @@ Func GUI_Main()
 					Case $hMenu_CheckForUpdate
 
 						$sTempPath = _WinAPI_GetTempFileName(@TempDir)
-						$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectBot/master/SelectBot_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+						$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectMultiBot/master/SelectMultiBot_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 						Do
 							Sleep(250)
 						Until InetGetInfo($hUpdateFile, $INET_DOWNLOADCOMPLETE)
@@ -206,7 +206,7 @@ Func GUI_Main()
 						$hMsgDelete = MsgBox($MB_YESNO, "Delete Local Files", "This will delete all SelectMultiBot Files (Profiles, Config and Auto Update) Do you want to proceed?", 0, $g_hGui_Main)
 						If $hMsgDelete = 6 Then
 							_GUICtrlStatusBar_SetText($g_hLog, "Deleting Files")
-							FileDelete(@StartupDir & "\SelectBotMultiAutoUpdate.exe")
+							FileDelete(@StartupDir & "\SelectMultiBotAutoUpdate.exe")
 							FileDelete($g_sDirProfiles)
 							UpdateList_Main()
 							_GUICtrlStatusBar_SetText($g_hLog, "Done")
@@ -445,7 +445,7 @@ Func GUI_DIR()
 	$hBtn_Folder = GUICtrlCreateButton("Choose Folder", 24, 72, 201, 21)
 	$hBtn_Finish = GUICtrlCreateButton("Next", 72, 120, 97, 25, $WS_GROUP)
 	GUICtrlSetState(-1, $GUI_DISABLE)
-	GUICtrlCreateLabel("Please select the MyBot Folder where the mybot.run.exe or .au3 is located at", 24, 8, 204, 57)
+	GUICtrlCreateLabel("Please select the MultiBot Folder where the multibot.run.exe or .au3 is located at", 24, 8, 204, 57)
 	GUISetState()
 
 
@@ -460,7 +460,7 @@ Func GUI_DIR()
 
 			Case $hBtn_Folder
 				WinSetOnTop($g_hGui_Main, "", $WINDOWS_NOONTOP)
-				Local $sFileSelectFolder = FileSelectFolder("Select your MyBot Folder", "")
+				Local $sFileSelectFolder = FileSelectFolder("Select your MultiBot Folder", "")
 				If @error Then
 					;GUICtrlSetData($Lbl_Log, "File Selection aborted.")
 				Else
@@ -472,7 +472,7 @@ Func GUI_DIR()
 				If $sFileSelectFolder = "" Then
 					ContinueLoop
 				ElseIf FileExists($sFileSelectFolder & "\" & $g_sBotFile) = 0 And FileExists($sFileSelectFolder & "\" & $g_sBotFileAU3) = 0 Then
-					MsgBox($MB_OK, "Error", "Looks like there is no runable mybot file in the Folder? Did you select the right folder or is in the Folder the mybot.run.exe or mybot.run.au3 renamed? Please select another Folder or rename Files!", 0, $g_hGui_Dir)
+					MsgBox($MB_OK, "Error", "Looks like there is no runable multibot file in the Folder? Did you select the right folder or is in the Folder the multibot.run.exe or multibot.run.au3 renamed? Please select another Folder or rename Files!", 0, $g_hGui_Dir)
 					ContinueLoop
 				Else
 					GUICtrlSetData($g_hProgress, 100)
@@ -669,7 +669,7 @@ Func GUI_Edit()
 
 
 			Case $hBtn_Folder
-				Local $sSelectedFolder = FileSelectFolder("Select your MyBot Folder", $g_sIniDir)
+				Local $sSelectedFolder = FileSelectFolder("Select your MultiBot Folder", $g_sIniDir)
 
 			Case $hBtn_Save
 				$sSelectedProfile = GUICtrlRead($hIpt_Profile)
@@ -713,7 +713,7 @@ Func GUI_AutoStart()
 			$sLstbx_SelItem = _GUICtrlListView_GetItemText($g_hListview_Main, $Lstbx_Sel[$i])
 			If $sLstbx_SelItem <> "" Then
 				ReadIni($sLstbx_SelItem)
-				If FileExists(@StartupDir & "\MyBot -" & $g_sIniProfile & ".lnk") = 0 Then
+				If FileExists(@StartupDir & "\MultiBot -" & $g_sIniProfile & ".lnk") = 0 Then
 					GUICtrlSetState($hBtn_Add, $GUI_ENABLE)
 					GUICtrlSetState($hBtn_Remove, $GUI_DISABLE)
 				Else
@@ -749,10 +749,10 @@ Func GUI_AutoStart()
 								$g_sBotFile = $g_sBotFileAU3
 							EndIf
 
-							FileCreateShortcut($g_sIniDir & "\" & $g_sBotFile, @StartupDir & "\MyBot -" & $g_sIniProfile & ".lnk", $g_sIniDir, $g_sIniProfile & " " & $g_sIniEmulator = "BlueStacks3" ? "BlueStacks2" : $g_sIniEmulator & " " & $g_sIniInstance, "Shortcut for Bot Profile:" & $g_sIniProfile)
+							FileCreateShortcut($g_sIniDir & "\" & $g_sBotFile, @StartupDir & "\MultiBot -" & $g_sIniProfile & ".lnk", $g_sIniDir, $g_sIniProfile & " " & $g_sIniEmulator = "BlueStacks3" ? "BlueStacks2" : $g_sIniEmulator & " " & $g_sIniInstance, "Shortcut for Bot Profile:" & $g_sIniProfile)
 
 							UpdateList_AS()
-							If FileExists(@StartupDir & "\MyBot -" & $g_sIniProfile & ".lnk") = 0 Then
+							If FileExists(@StartupDir & "\MultiBot -" & $g_sIniProfile & ".lnk") = 0 Then
 								GUICtrlSetState($hBtn_Remove, $GUI_DISABLE)
 								GUICtrlSetState($hBtn_Add, $GUI_ENABLE)
 							Else
@@ -773,14 +773,14 @@ Func GUI_AutoStart()
 						$sLstbx_SelItem = _GUICtrlListView_GetItemText($g_hListview_Main, $Lstbx_Sel[$i])
 						If $sLstbx_SelItem <> "" Then
 							ReadIni($sLstbx_SelItem)
-							If FileExists(@StartupDir & "\MyBot -" & $g_sIniProfile & ".lnk") = 1 Then
-								FileDelete(@StartupDir & "\MyBot -" & $g_sIniProfile & ".lnk")
+							If FileExists(@StartupDir & "\MultiBot -" & $g_sIniProfile & ".lnk") = 1 Then
+								FileDelete(@StartupDir & "\MultiBot -" & $g_sIniProfile & ".lnk")
 								GUICtrlSetData($g_hLst_AutoStart, "")
 
 							EndIf
 
 							UpdateList_AS()
-							If FileExists(@StartupDir & "\MyBot -" & $g_sIniProfile & ".lnk") = 0 Then
+							If FileExists(@StartupDir & "\MultiBot -" & $g_sIniProfile & ".lnk") = 0 Then
 								GUICtrlSetState($hBtn_Remove, $GUI_DISABLE)
 								GUICtrlSetState($hBtn_Add, $GUI_ENABLE)
 							Else
@@ -815,7 +815,7 @@ Func RunSetup()
 				ElseIf FileExists($g_sIniDir & "\" & $g_sBotFileAU3) = 1 Then
 					ShellExecute($g_sBotFileAU3, $g_sIniProfile & " " & $sEmulator & " " & $g_sIniInstance & $sSpecialParameter, $g_sIniDir)
 				Else
-					MsgBox($MB_OK, "No Bot found", "Couldn't find any Bot in the Directory, please check if you have the mybot.run.exe or the mybot.run.au3 in the Dir and if you selected the right Dir!", 0, $g_hGui_Main)
+					MsgBox($MB_OK, "No Bot found", "Couldn't find any Bot in the Directory, please check if you have the multibot.run.exe or the multibot.run.au3 in the Dir and if you selected the right Dir!", 0, $g_hGui_Main)
 					_GUICtrlStatusBar_SetText($g_hLog, "Error while Running")
 				EndIf
 			EndIf
@@ -840,9 +840,9 @@ Func CreateShortcut()
 				ElseIf FileExists($g_sIniDir & "\" & $g_sBotFileAU3) Then
 					$sBotFileName = $g_sBotFileAU3
 				Else
-					MsgBox($MB_OK, "No Bot found", "Couldn't find any Bot in the Directory, please check if you have the mybot.run.exe or the mybot.run.au3 in the Dir and if you selected the right Dir!", 0, $g_hGui_Main)
+					MsgBox($MB_OK, "No Bot found", "Couldn't find any Bot in the Directory, please check if you have the multibot.run.exe or the multibot.run.au3 in the Dir and if you selected the right Dir!", 0, $g_hGui_Main)
 				EndIf
-				$hSC = FileCreateShortcut($g_sIniDir & "\" & $sBotFileName, @DesktopDir & "\MyBot -" & $g_sIniProfile & ".lnk", $g_sIniDir, $g_sIniProfile & " " & $sEmulator & " " & $g_sIniInstance & $sSpecialParameter, "Shortcut for Bot Profile:" & $g_sIniProfile)
+				$hSC = FileCreateShortcut($g_sIniDir & "\" & $sBotFileName, @DesktopDir & "\MultiBot -" & $g_sIniProfile & ".lnk", $g_sIniDir, $g_sIniProfile & " " & $sEmulator & " " & $g_sIniInstance & $sSpecialParameter, "Shortcut for Bot Profile:" & $g_sIniProfile)
 				If $hSC = 1 Then $iCreatedSC += 1
 
 			EndIf
@@ -887,7 +887,7 @@ Func UpdateList_AS()
 	Else
 		For $i = 1 To $aSections[0]
 			$sProfiles = IniRead($g_sDirProfiles, $aSections[$i], "Profile", "")
-			If FileExists(@StartupDir & "\MyBot -" & $sProfiles & ".lnk") Then
+			If FileExists(@StartupDir & "\MultiBot -" & $sProfiles & ".lnk") Then
 				GUICtrlSetData($g_hLst_AutoStart, $sProfiles)
 			EndIf
 		Next
@@ -901,7 +901,7 @@ Func GetBotVers()
 	$aSections = IniReadSectionNames($g_sDirProfiles)
 	For $i = 1 To UBound($aSections, 1) - 1
 		ReadIni($aSections[$i])
-		$hBotVers = FileOpen($g_sIniDir & "\mybot.run.au3")
+		$hBotVers = FileOpen($g_sIniDir & "\multibot.run.au3")
 
 		$sBotVers = FileRead($hBotVers)
 		$aBotVers = StringRegExp($sBotVers, "(?i)v([0-9]+)(?:\.[0-9]+)?(?:\.[0-9]+)?", 2)
@@ -911,7 +911,7 @@ Func GetBotVers()
 			If IsArray($aBotVers) Then
 				IniWrite($g_sDirProfiles, $aSections[$i], "BotVers", $aBotVers[0])
 			Else
-				$hBotVers = FileOpen($g_sIniDir & "\mybot.run.version.au3")
+				$hBotVers = FileOpen($g_sIniDir & "\multibot.run.version.au3")
 
 				$sBotVers = FileRead($hBotVers)
 				$aBotVers = StringRegExp($sBotVers, "(?i)v([0-9]+)(?:\.[0-9]+)?(?:\.[0-9]+)?", 2)
@@ -993,7 +993,7 @@ Func _ContextMenu($sItem)
 					$sLstbx_SelItem = _GUICtrlListView_GetItemText($g_hListview_Main, $Lstbx_Sel[$i])
 					If $sLstbx_SelItem <> "" Then
 						IniDelete(@MyDocumentsDir & "\Profiles.ini", $sLstbx_SelItem)
-						If FileExists(@StartupDir & "\MyBot -" & $sLstbx_SelItem & ".lnk") = 1 Then FileDelete(@StartupDir & "\MyBot -" & $sLstbx_SelItem & ".lnk")
+						If FileExists(@StartupDir & "\MultiBot -" & $sLstbx_SelItem & ".lnk") = 1 Then FileDelete(@StartupDir & "\MultiBot -" & $sLstbx_SelItem & ".lnk")
 					EndIf
 				Next
 			EndIf
@@ -1062,7 +1062,7 @@ EndFunc   ;==>WM_NOTIFY
 Func UpdateSelect()
 
 	FileMove(@ScriptDir & "\" & @ScriptName, @ScriptDir & "\" & "SelectMultiBotOLD" & $g_sVersion & ".exe")
-	$hUpdateFile = InetGet("https://github.com/tehbank/SelectBot/raw/master/SelectMultiBot.Exe", @ScriptDir & "\SelectMultiBot.exe", $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+	$hUpdateFile = InetGet("https://github.com/tehbank/SelectMultiBot/raw/master/SelectMultiBot.Exe", @ScriptDir & "\SelectMultiBot.exe", $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 	Do
 		Sleep(250)
 	Until InetGetInfo($hUpdateFile, $INET_DOWNLOADCOMPLETE)
@@ -1075,8 +1075,8 @@ Func UpdateSelect()
 EndFunc   ;==>UpdateSelect
 
 Func CheckUpdate()
-	$sTempPath = @MyDocumentsDir & "\SelectBot_Info.txt"
-	$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectBot/master/SelectBot_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+	$sTempPath = @MyDocumentsDir & "\SelectMultiBot_Info.txt"
+	$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectMultiBot/master/SelectMultiBot_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 	Do
 		Sleep(250)
 	Until InetGetInfo($hUpdateFile, $INET_DOWNLOADCOMPLETE)
@@ -1094,8 +1094,8 @@ EndFunc   ;==>CheckUpdate
 Func ChangeLog()
 	Local $sTitle, $sMessage, $sDate
 
-	$sTempPath = @MyDocumentsDir & "SelectBot_Info.txt"
-	$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectBot/master/SelectBot_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+	$sTempPath = @MyDocumentsDir & "SelectMultiBot_Info.txt"
+	$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectMultiBot/master/SelectMultiBot_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 	Do
 		Sleep(250)
 	Until InetGetInfo($hUpdateFile, $INET_DOWNLOADCOMPLETE)
