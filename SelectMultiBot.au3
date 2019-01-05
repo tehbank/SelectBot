@@ -68,7 +68,7 @@ GUI_Main()
 
 Func GUI_Main()
 
-	$g_hGui_Main = GUICreate("Select", 258, 452, -1, -1)
+	$g_hGui_Main = GUICreate("SelectMultiBot", 258, 452, -1, -1)
 	$g_hListview_Main = GUICtrlCreateListView("", 8, 24, 241, 305, BitOR($LVS_REPORT, $LVS_SHOWSELALWAYS), -1)
 	_GUICtrlListView_InsertColumn($g_hListview_Main, 1, "Setup", 172)
 	_GUICtrlListView_InsertColumn($g_hListview_Main, 2, "Bot Vers", 65)
@@ -103,7 +103,7 @@ Func GUI_Main()
 
 	$g_hLog = _GUICtrlStatusBar_Create($g_hGui_Main)
 	_GUICtrlStatusBar_SetParts($g_hLog, 2, 185)
-	_GUICtrlStatusBar_SetText($g_hLog, "SelectMultiBot")
+	_GUICtrlStatusBar_SetText($g_hLog, "Version: " & $g_sVersion)
 	$g_hProgress = GUICtrlCreateProgress(0, 0, -1, -1, $PBS_SMOOTH)
 	$hProgress = GUICtrlGetHandle($g_hProgress)
 	_GUICtrlStatusBar_EmbedControl($g_hLog, 1, $hProgress)
@@ -139,7 +139,7 @@ Func GUI_Main()
 					Case $hMenu_HelpMsg
 						MsgBox($MB_OK, "Help", "To create a new Setup just press the New Setup Button and walk through the Guide!" & @CRLF & @CRLF & "To create a new Shortcut just press the New Shortcut Button and a Shortcut gets created on your Desktop!" & @CRLF & @CRLF & "Double Click an Item in the List to start the Bot with the highlighted Setup!" & @CRLF & @CRLF & "Right Click for a Context Menu." & @CRLF & @CRLF & "The Auto Updater will be downloaded and when you turn it off it will stay there but won't activate. When you delete this Tool make sure to Click on Misc and then Clear Local Files!", 0, $g_hGui_Main)
 					Case $hMenu_ForumTopic
-						ShellExecute("https://mybot.run/forums/index.php?/topic/15860-how-to-run-multiple-botshow-to-bot-on-droid4x-and-memu-w-updated-tool/")
+						ShellExecute("https://forum.multibot.run/showthread.php?tid=44")
 
 					Case $hMenu_Documents
 						ShellExecute(@MyDocumentsDir)
