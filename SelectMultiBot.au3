@@ -6,7 +6,7 @@
 #AutoIt3Wrapper_UseUpx=y
 #AutoIt3Wrapper_Res_Comment=Made by Fliegerfaust, Edited for MultiBot.Run by tehbank
 #AutoIt3Wrapper_Res_Description=SelectMultiBot for MultiBot
-#AutoIt3Wrapper_Res_Fileversion=1.0.0.0
+#AutoIt3Wrapper_Res_Fileversion=1.0.1.0
 #AutoIt3Wrapper_Res_LegalCopyright=Fliegerfaust, edited by tehbank
 #AutoIt3Wrapper_Run_Tidy=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
@@ -46,7 +46,7 @@
 
 Global $g_sBotFile = "multibot.run.exe"
 Global $g_sBotFileAU3 = "multibot.run.au3"
-Global $g_sVersion = "1.0.0"
+Global $g_sVersion = "1.0.1"
 Global $g_sDirProfiles = @MyDocumentsDir & "\Profiles.ini"
 Global $g_hGui_Main, $g_hGui_Profile, $g_hGui_Emulator, $g_hGui_Instance, $g_hGui_Dir, $g_hGui_Parameter, $g_hGUI_AutoStart, $g_hGUI_Edit, $g_hListview_Main, $g_hLst_AutoStart, $g_hLog, $g_hProgress, $g_hBtn_Shortcut, $g_hBtn_AutoStart, $g_hContext_Main
 Global $g_hListview_Instances, $g_hLblUpdateAvailable
@@ -904,7 +904,7 @@ Func GetBotVers()
 		$hBotVers = FileOpen($g_sIniDir & "\multibot.run.au3")
 
 		$sBotVers = FileRead($hBotVers)
-		$aBotVers = StringRegExp($sBotVers, "(?i)v([0-9]+)(?:\.[0-9]+)?(?:\.[0-9]+)?", 2)
+		$aBotVers = StringRegExp($sBotVers, "(?i)v([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})", 2)
 
 		FileClose($hBotVers)
 		If $aSections[$i] <> "Options" Then
@@ -914,7 +914,7 @@ Func GetBotVers()
 				$hBotVers = FileOpen($g_sIniDir & "\multibot.run.version.au3")
 
 				$sBotVers = FileRead($hBotVers)
-				$aBotVers = StringRegExp($sBotVers, "(?i)v([0-9]+)(?:\.[0-9]+)?(?:\.[0-9]+)?", 2)
+				$aBotVers = StringRegExp($sBotVers, "(?i)v([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})", 2)
 
 				FileClose($hBotVers)
 				If IsArray($aBotVers) Then IniWrite($g_sDirProfiles, $aSections[$i], "BotVers", $aBotVers[0])
