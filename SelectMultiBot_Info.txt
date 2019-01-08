@@ -1,6 +1,6 @@
 [General]
-DisplayVers=1.0.0
+DisplayVers=1.0.1
 [Changelog]
 Title=Whats new in 1.0.0 ?
-Message=- Inital fork and edit for Multibot
-Date=4th December 2019
+Message=- Now shows the correct MultiBot.Run version
+Date=8th January 2019
