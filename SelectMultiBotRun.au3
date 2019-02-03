@@ -1,11 +1,11 @@
 #RequireAdmin
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Icon=Icon\Icon.ico
-#AutoIt3Wrapper_Outfile=SelectMultiBot.Exe
+#AutoIt3Wrapper_Outfile=SelectMultiBotRun.Exe
 #AutoIt3Wrapper_Compression=4
 #AutoIt3Wrapper_UseUpx=y
-#AutoIt3Wrapper_Res_Comment=Made by Fliegerfaust, Edited for MultiBot.Run by tehbank
-#AutoIt3Wrapper_Res_Description=SelectMultiBot for MultiBot
+#AutoIt3Wrapper_Res_Comment=Made by Fliegerfaust, Edited for MultiBotRun by tehbank
+#AutoIt3Wrapper_Res_Description=SelectMultiBotRun for MultiBotRun
 #AutoIt3Wrapper_Res_Fileversion=1.0.1.0
 #AutoIt3Wrapper_Res_LegalCopyright=Fliegerfaust, edited by tehbank
 #AutoIt3Wrapper_Run_Tidy=y
@@ -68,7 +68,7 @@ GUI_Main()
 
 Func GUI_Main()
 
-	$g_hGui_Main = GUICreate("SelectMultiBot", 258, 452, -1, -1)
+	$g_hGui_Main = GUICreate("SelectMultiBotRun", 258, 452, -1, -1)
 	$g_hListview_Main = GUICtrlCreateListView("", 8, 24, 241, 305, BitOR($LVS_REPORT, $LVS_SHOWSELALWAYS), -1)
 	_GUICtrlListView_InsertColumn($g_hListview_Main, 1, "Setup", 172)
 	_GUICtrlListView_InsertColumn($g_hListview_Main, 2, "Bot Vers", 65)
@@ -174,7 +174,7 @@ Func GUI_Main()
 					Case $hMenu_CheckForUpdate
 
 						$sTempPath = _WinAPI_GetTempFileName(@TempDir)
-						$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectMultiBot/master/SelectMultiBot_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+						$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectMultiBotRun/master/SelectMultiBotRun_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 						Do
 							Sleep(250)
 						Until InetGetInfo($hUpdateFile, $INET_DOWNLOADCOMPLETE)
@@ -187,7 +187,7 @@ Func GUI_Main()
 						Select
 							Case $Update = -1
 								_GUICtrlStatusBar_SetText($g_hLog, "Update found!")
-								$msgUpdate = MsgBox($MB_YESNO, "Update", "New SelectMultiBot Update found" & @CRLF & "New: " & $sGitVersion & @CRLF & "Old: " & $g_sVersion & @CRLF & "Do you want to download it?", 0, $g_hGui_Main)
+								$msgUpdate = MsgBox($MB_YESNO, "Update", "New SelectMultiBotRun Update found" & @CRLF & "New: " & $sGitVersion & @CRLF & "Old: " & $g_sVersion & @CRLF & "Do you want to download it?", 0, $g_hGui_Main)
 								If $msgUpdate = $IDYES Then
 									UpdateSelect()
 								EndIf
@@ -203,10 +203,10 @@ Func GUI_Main()
 
 
 					Case $hMenu_Clear
-						$hMsgDelete = MsgBox($MB_YESNO, "Delete Local Files", "This will delete all SelectMultiBot Files (Profiles, Config and Auto Update) Do you want to proceed?", 0, $g_hGui_Main)
+						$hMsgDelete = MsgBox($MB_YESNO, "Delete Local Files", "This will delete all SelectMultiBotRun Files (Profiles, Config and Auto Update) Do you want to proceed?", 0, $g_hGui_Main)
 						If $hMsgDelete = 6 Then
 							_GUICtrlStatusBar_SetText($g_hLog, "Deleting Files")
-							FileDelete(@StartupDir & "\SelectMultiBotAutoUpdate.exe")
+							FileDelete(@StartupDir & "\SelectMultiBotRunAutoUpdate.exe")
 							FileDelete($g_sDirProfiles)
 							UpdateList_Main()
 							_GUICtrlStatusBar_SetText($g_hLog, "Done")
@@ -1061,22 +1061,22 @@ EndFunc   ;==>WM_NOTIFY
 
 Func UpdateSelect()
 
-	FileMove(@ScriptDir & "\" & @ScriptName, @ScriptDir & "\" & "SelectMultiBotOLD" & $g_sVersion & ".exe")
-	$hUpdateFile = InetGet("https://github.com/tehbank/SelectMultiBot/raw/master/SelectMultiBot.Exe", @ScriptDir & "\SelectMultiBot.exe", $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+	FileMove(@ScriptDir & "\" & @ScriptName, @ScriptDir & "\" & "SelectMultiBotRunOLD" & $g_sVersion & ".exe")
+	$hUpdateFile = InetGet("https://github.com/tehbank/SelectMultiBotRun/raw/master/SelectMultiBotRun.Exe", @ScriptDir & "\SelectMultiBotRun.exe", $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 	Do
 		Sleep(250)
 	Until InetGetInfo($hUpdateFile, $INET_DOWNLOADCOMPLETE)
 
 	InetClose($hUpdateFile)
-	MsgBox($MB_OK, "Update", "Update finished! Downloaded newer Version and placed it in old Directoy!.New Version gets now started! Just delete the SelectMultiBotOLD" & $g_sVersion & ".exe and continue botting :)", 0, $g_hGui_Main)
-	ShellExecute(@ScriptDir & "\SelectMultiBot.exe")
+	MsgBox($MB_OK, "Update", "Update finished! Downloaded newer Version and placed it in old Directoy!.New Version gets now started! Just delete the SelectMultiBotRunOLD" & $g_sVersion & ".exe and continue botting :)", 0, $g_hGui_Main)
+	ShellExecute(@ScriptDir & "\SelectMultiBotRun.exe")
 	Exit
 
 EndFunc   ;==>UpdateSelect
 
 Func CheckUpdate()
-	$sTempPath = @MyDocumentsDir & "\SelectMultiBot_Info.txt"
-	$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectMultiBot/master/SelectMultiBot_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+	$sTempPath = @MyDocumentsDir & "\SelectMultiBotRun_Info.txt"
+	$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectMultiBotRun/master/SelectMultiBotRun_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 	Do
 		Sleep(250)
 	Until InetGetInfo($hUpdateFile, $INET_DOWNLOADCOMPLETE)
@@ -1094,8 +1094,8 @@ EndFunc   ;==>CheckUpdate
 Func ChangeLog()
 	Local $sTitle, $sMessage, $sDate
 
-	$sTempPath = @MyDocumentsDir & "SelectMultiBot_Info.txt"
-	$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectMultiBot/master/SelectMultiBot_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+	$sTempPath = @MyDocumentsDir & "SelectMultiBotRun_Info.txt"
+	$hUpdateFile = InetGet("https://raw.githubusercontent.com/tehbank/SelectMultiBotRun/master/SelectMultiBotRun_Info.txt", $sTempPath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 	Do
 		Sleep(250)
 	Until InetGetInfo($hUpdateFile, $INET_DOWNLOADCOMPLETE)
