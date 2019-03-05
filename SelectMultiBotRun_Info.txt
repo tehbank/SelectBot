@@ -1,6 +1,6 @@
 [General]
-DisplayVers=1.0.1
+DisplayVers=1.0.2
 [Changelog]
-Title=Whats new in 1.0.1 ?
-Message=- Now shows the correct MultiBot.Run version
-Date=8th January 2019
+Title=Whats new in 1.0.2 ?
+Message=- Updated Links to new Multibot Forum
+Date=5th March 2019

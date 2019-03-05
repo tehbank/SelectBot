@@ -6,7 +6,7 @@
 #AutoIt3Wrapper_UseUpx=y
 #AutoIt3Wrapper_Res_Comment=Made by Fliegerfaust, Edited for MultiBotRun by tehbank
 #AutoIt3Wrapper_Res_Description=SelectMultiBotRun for MultiBotRun
-#AutoIt3Wrapper_Res_Fileversion=1.0.1.0
+#AutoIt3Wrapper_Res_Fileversion=1.0.2.0
 #AutoIt3Wrapper_Res_LegalCopyright=Fliegerfaust, edited by tehbank
 #AutoIt3Wrapper_Run_Tidy=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
@@ -46,7 +46,7 @@
 
 Global $g_sBotFile = "multibot.run.exe"
 Global $g_sBotFileAU3 = "multibot.run.au3"
-Global $g_sVersion = "1.0.1"
+Global $g_sVersion = "1.0.2"
 Global $g_sDirProfiles = @MyDocumentsDir & "\Profiles.ini"
 Global $g_hGui_Main, $g_hGui_Profile, $g_hGui_Emulator, $g_hGui_Instance, $g_hGui_Dir, $g_hGui_Parameter, $g_hGUI_AutoStart, $g_hGUI_Edit, $g_hListview_Main, $g_hLst_AutoStart, $g_hLog, $g_hProgress, $g_hBtn_Shortcut, $g_hBtn_AutoStart, $g_hContext_Main
 Global $g_hListview_Instances, $g_hLblUpdateAvailable
@@ -139,7 +139,7 @@ Func GUI_Main()
 					Case $hMenu_HelpMsg
 						MsgBox($MB_OK, "Help", "To create a new Setup just press the New Setup Button and walk through the Guide!" & @CRLF & @CRLF & "To create a new Shortcut just press the New Shortcut Button and a Shortcut gets created on your Desktop!" & @CRLF & @CRLF & "Double Click an Item in the List to start the Bot with the highlighted Setup!" & @CRLF & @CRLF & "Right Click for a Context Menu." & @CRLF & @CRLF & "The Auto Updater will be downloaded and when you turn it off it will stay there but won't activate. When you delete this Tool make sure to Click on Misc and then Clear Local Files!", 0, $g_hGui_Main)
 					Case $hMenu_ForumTopic
-						ShellExecute("https://forum.multibot.run/showthread.php?tid=44")
+						ShellExecute("https://forum.multibot.run/index.php?threads/multibotrun-selectmultibotrun-v1-0-1.44/")
 
 					Case $hMenu_Documents
 						ShellExecute(@MyDocumentsDir)
@@ -169,7 +169,7 @@ Func GUI_Main()
 						ShellExecute("http://down1.koplayer.com/Emulator/koplayer-1.4.1049.exe")
 
 					Case $hMenu_iTools
-						ShellExecute("http://pro.itools.cn/simulate/")
+						ShellExecute("https://forum.multibot.run/index.php?threads/multibotrun-emulator-itools-2-8-0-english-by-spartan.47/")
 
 					Case $hMenu_CheckForUpdate
 
