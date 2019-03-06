@@ -1,6 +1,6 @@
 [General]
-DisplayVers=1.0.2
+DisplayVers=1.0.3
 [Changelog]
-Title=Whats new in 1.0.2 ?
-Message=- Updated Links to new Multibot Forum
-Date=5th March 2019
+Title=Whats new in 1.0.3 ?
+Message=- Fixed a typo in the Updater. 
+Date=6th March 2019
