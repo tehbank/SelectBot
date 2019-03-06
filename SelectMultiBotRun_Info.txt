@@ -1,6 +1,6 @@
 [General]
-DisplayVers=1.0.3
+DisplayVers=1.1.0
 [Changelog]
-Title=Whats new in 1.0.3 ?
-Message=- Fixed a typo in the Updater. 
+Title=Whats new in 1.1.0 ?
+Message=- New Layout, cleaned up codebase, lots of minor improvements 
 Date=6th March 2019
