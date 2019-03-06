@@ -904,7 +904,7 @@ Func GetBotVers()
 		$hBotVers = FileOpen($g_sIniDir & "\multibot.run.au3")
 
 		$sBotVers = FileRead($hBotVers)
-		$aBotVers = StringRegExp($sBotVers, "(?i)v([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})", 2)
+		$aBotVers = StringRegExp($sBotVers, "(?i)v([0-9]+)(?:\.[0-9]+)?(?:\.[0-9]+)?", 2)
 
 		FileClose($hBotVers)
 		If $aSections[$i] <> "Options" Then
@@ -914,7 +914,7 @@ Func GetBotVers()
 				$hBotVers = FileOpen($g_sIniDir & "\multibot.run.version.au3")
 
 				$sBotVers = FileRead($hBotVers)
-				$aBotVers = StringRegExp($sBotVers, "(?i)v([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})", 2)
+				$aBotVers = StringRegExp($sBotVers, "(?i)v([0-9]+)(?:\.[0-9]+)?(?:\.[0-9]+)?", 2)
 
 				FileClose($hBotVers)
 				If IsArray($aBotVers) Then IniWrite($g_sDirProfiles, $aSections[$i], "BotVers", $aBotVers[0])
