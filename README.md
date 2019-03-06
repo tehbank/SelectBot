@@ -6,4 +6,4 @@ edited to work with MultiBot.Run
 * [MultiBot.Run Website](https://www.multibot.run)
 * [MultiBot.Run Forum Thread](https://forum.multibot.run/index.php?threads/multibotrun-selectmultibotrun-v1-0-3.44/)
 
-You can find me quite regulary on the [MultiBot.Run Discord Server](https://discordapp.com/invite/DaQggqg). My Username is John Doe#7900.
+You can find me quite regularly on the [MultiBot.Run Discord Server](https://discordapp.com/invite/DaQggqg). My Username is John Doe#7900.
